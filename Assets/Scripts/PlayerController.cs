@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup;
     private float powerupStrength = 15.0f;
     public GameObject powerupIndicator;
-    private GameManager gameManager;
 
     // Start is called before the first frame; update
     void Start()
@@ -35,15 +34,10 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
             powerupIndicator.gameObject.SetActive(true);
-            if (!gameObject.CompareTag("Player"))
-            {
-                gameManager.GameOver();
-            }
         }
     }
 
-    IEnumerator PowerupCountdownRoutine()
-    {
+    IEnumerator PowerupCountdownRoutine() {
         yield return new WaitForSeconds(7);
         hasPowerup = false;
         powerupIndicator.gameObject.SetActive(false);
@@ -55,7 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
-
+        
             Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
             enemyRigidbody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
         }
