@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -9,12 +10,15 @@ public class SpawnManager : MonoBehaviour
     public int enemyCount;
     public int waveNumber = 1;
     public GameObject powerupPrefab;
+    private GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start() 
     {
         SpawnEnemyWave(waveNumber);
         Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
 
@@ -37,6 +41,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameManager.gameActive) return;
         enemyCount = FindObjectsOfType<Enemy>().Length;
         if(enemyCount == 0) 
         {

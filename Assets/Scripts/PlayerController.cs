@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float powerupStrength = 15.0f;
     public GameObject powerupIndicator;
     public Canvas gameOverCanvas;
-    public Button restartButton;
+    private GameManager gameManager;
 
     // Start is called before the first frame; update
     void Start()
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameManager.gameActive) return;
         float forwardInput = Input.GetAxis("Vertical");
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
         float horizontalInput = Input.GetAxis("Horizontal");
