@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float powerupStrength = 15.0f;
     public GameObject powerupIndicator;
     public Canvas gameOverCanvas;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     // Start is called before the first frame; update
     void Start()
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < -10)
         {
             gameOverCanvas.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
+            
         }
     }
 

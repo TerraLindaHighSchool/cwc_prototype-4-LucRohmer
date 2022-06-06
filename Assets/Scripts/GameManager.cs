@@ -19,7 +19,7 @@ using UnityEngine.SceneManagement;
     {
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         startButton.onClick.AddListener(startGame);
-        restartButton.onClick.AddListener(restartGame);
+        restartButton.onClick.AddListener(RestartGame);
     }
 
     public void RestartGame()
@@ -27,7 +27,7 @@ using UnityEngine.SceneManagement;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void startGame()
+    public void startGame()
     {
         gameActive = true;
         titleScreen.SetActive(false);
